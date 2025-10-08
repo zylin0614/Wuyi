@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+                    http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1"
+         metadata-complete="false">
+    
+    <!-- 显示名称 -->
+    <display-name>soft_practice01</display-name>
+    <description>Soft Practice 01 Web Application</description>
+    
+    <!-- 欢迎页面配置 -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+    
+    <!-- 会话超时配置（30分钟） -->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+    
+    <!-- 字符编码过滤器（推荐添加） -->
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ignore</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <!-- JSP配置 -->
+    <jsp-config>
+        <!-- 设置JSP页面编码 -->
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+            <default-content-type>text/html; charset=UTF-8</default-content-type>
+        </jsp-property-group>
+    </jsp-config>
+    
+	<servlet>
+        <servlet-name>Buyer_message_servlet</servlet-name>
+        <servlet-class>Servlet.Buyer_message_servlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Buyer_message_servlet</servlet-name>
+        <url-pattern>/Buyer_message_servlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Buyercheck_ordermessage</servlet-name>
+        <servlet-class>Servlet.Buyercheck_ordermessage</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>Buyercheck_ordermessage</servlet-name>
+        <url-pattern>/Buyercheck_ordermessage</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>BuyServlet</servlet-name>
+        <servlet-class>Servlet.BuyServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>BuyServlet</servlet-name>
+        <url-pattern>/BuyServlet</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <servlet-name>get_workServlet</servlet-name>
+        <servlet-class>Servlet.get_workServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>get_workServlet</servlet-name>
+        <url-pattern>/get_workServlet</url-pattern>
+    </servlet-mapping>
+
+     <servlet>
+        <servlet-name>HistoryProductsServlet</servlet-name>
+        <servlet-class>Servlet.HistoryProductsServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>HistoryProductsServlet</servlet-name>
+        <url-pattern>/HistoryProductsServlet</url-pattern>
+    </servlet-mapping>   
+    
+    <servlet>
+        <servlet-name>insert_goodServlet</servlet-name>
+        <servlet-class>Servlet.insert_goodServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>insert_goodServlet</servlet-name>
+        <url-pattern>/insert_goodServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>Servlet.LogoutServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <servlet-name>MerchantLoginServlet</servlet-name>
+        <servlet-class>Servlet.MerchantLoginServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>MerchantLoginServlet</servlet-name>
+        <url-pattern>/MerchantLoginServlet</url-pattern>
+    </servlet-mapping>    
+
+     <servlet>
+        <servlet-name>modify_goodStatusServlet</servlet-name>
+        <servlet-class>Servlet.modify_goodStatusServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>modify_goodStatusServlet</servlet-name>
+        <url-pattern>/modify_goodStatusServlet</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <servlet-name>password_change_servlet</servlet-name>
+        <servlet-class>Servlet.password_change_servlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>password_change_servlet</servlet-name>
+        <url-pattern>/password_change_servlet</url-pattern>
+    </servlet-mapping>     
+
+</web-app>
