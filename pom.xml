@@ -94,7 +94,6 @@
             <configuration>
                 <warSourceDirectory>src/main/webapp</warSourceDirectory>
                 <failOnMissingWebXml>false</failOnMissingWebXml>
-            	 <packagingIncludes>WEB-INF/lib/*.jar</packagingIncludes>
             </configuration>
         </plugin>
     </plugins>

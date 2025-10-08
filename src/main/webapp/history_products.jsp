@@ -58,7 +58,7 @@
 
         <div class="flex items-center space-x-4">
             <div class="relative hidden md:block">
-                <form method="get" action="historyProducts" class="flex items-center">
+                <form method="get" action="HistoryProductsServlet" class="flex items-center">
                     <input type="text" name="search" placeholder="搜索订单号或商品名称..." value="${search}"
                            class="pl-10 pr-4 py-2 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-custom w-64">
                     <input type="hidden" name="status" value="${status}">
@@ -92,7 +92,7 @@
             </div>
 
             <div class="flex flex-wrap gap-3 mt-4 md:mt-0">
-                <form method="get" action="historyProducts" class="flex flex-wrap gap-3">
+                <form method="get" action="HistoryProductsServlet" class="flex flex-wrap gap-3">
                     <div class="relative">
                         <select name="status" class="pl-4 pr-10 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary appearance-none bg-white transition-custom">
                             <option value="">所有状态</option>
