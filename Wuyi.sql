@@ -1,0 +1,76 @@
+USE [master]
+GO
+
+-- 创建数据库
+CREATE DATABASE [Wuyi]
+ALTER DATABASE Wuyi COLLATE Chinese_PRC_CI_AS;
+
+-- 使用数据库
+USE [Wuyi]
+GO
+
+
+-- 创建商家表
+CREATE TABLE [dbo].[Merchant](
+    [merchant_name] [varchar](50) NOT NULL,
+    [merchant_password] [varchar](100) NOT NULL,
+    CONSTRAINT [PK_Merchant] PRIMARY KEY CLUSTERED ([merchant_name] ASC)
+)
+GO
+
+-- 创建作品表
+CREATE TABLE [dbo].[Works](
+    [work_id] [int] IDENTITY(1001,1) NOT NULL,
+    [work_name] [varchar](100) NOT NULL,
+    [work_description] [text] NULL,
+    [work_image] [varchar](255) NOT NULL,
+    [work_price] [varchar](20) NOT NULL,
+    [work_status] [varchar](10) NOT NULL CHECK ([work_status] IN ('sold', 'frozen', 'available')),
+    CONSTRAINT [PK_Works] PRIMARY KEY CLUSTERED ([work_id] ASC)
+)
+GO
+
+-- 创建预约表
+CREATE TABLE [dbo].[Reservation](
+    [order_id] [varchar](7) NOT NULL CHECK ([order_id] LIKE 'DD[0-9][0-9][0-9][0-9][0-9]'),
+    [work_id] [int] NOT NULL,
+    [buyer_name] [varchar](5) NOT NULL,
+    [buyer_phonenumber] [char](11) NOT NULL CHECK ([buyer_phonenumber] LIKE '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
+    [trading_address] [varchar](80) NOT NULL,
+    [trading_time] [varchar](16) NOT NULL CHECK ([trading_time] LIKE '[0-9][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9] [0-2][0-9]:[0-5][0-9]'),
+    [order_time] [varchar](19) NOT NULL CHECK ([order_time] LIKE '[0-9][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9] [0-2][0-9]:[0-5][0-9]:[0-5][0-9]'),
+    CONSTRAINT [PK_Reservation] PRIMARY KEY CLUSTERED ([order_id] ASC)
+)
+GO
+
+-- 创建交易表
+CREATE TABLE [dbo].[Trade](
+    [trade_id] [varchar](20) NOT NULL,
+    [order_id] [varchar](7) NOT NULL,
+    [work_id] [int] NOT NULL,
+    [work_status] [varchar](10) NULL,
+    CONSTRAINT [PK_Trade] PRIMARY KEY CLUSTERED ([trade_id] ASC),
+    CONSTRAINT [UK_Trade_Order] UNIQUE NONCLUSTERED ([order_id] ASC)
+)
+GO
+
+-- 添加外键约束
+ALTER TABLE [dbo].[Reservation] 
+ADD CONSTRAINT [FK_Reservation_Works] 
+FOREIGN KEY ([work_id]) REFERENCES [dbo].[Works]([work_id])
+GO
+
+ALTER TABLE [dbo].[Trade] 
+ADD CONSTRAINT [FK_Trade_Reservation] 
+FOREIGN KEY ([order_id]) REFERENCES [dbo].[Reservation]([order_id])
+GO
+
+ALTER TABLE [dbo].[Trade] 
+ADD CONSTRAINT [FK_Trade_Works] 
+FOREIGN KEY ([work_id]) REFERENCES [dbo].[Works]([work_id])
+GO
+
+-- 插入初始数据
+INSERT INTO [dbo].[Merchant] ([merchant_name], [merchant_password]) 
+VALUES (N'wuyi', N'wuyi123')
+GO
